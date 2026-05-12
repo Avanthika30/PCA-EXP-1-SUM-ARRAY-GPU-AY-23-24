@@ -53,6 +53,12 @@ void sumArraysOnHost(float *A, float *B, float *C, const int N)
         C[idx] = A[idx] + B[idx];
     }
 }
+__global__ void sumArrayOnGPU(float *A, float *B,float *C,const int N)
+{
+    int i = blockIdx.x.x * blockDim.x + threadIdx.x;
+
+    if (i<N) C[i] = A[i] + B[i];
+}
 
 // Kernel Function to be included here
 
